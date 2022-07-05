@@ -18,15 +18,19 @@ final class Acronym : Model {
     @Field(key: "long")
     public var long : String
     
+    @Parent(key: "userID")
+    public var userID : User
+    
     @Field(key: "short")
     public var short : String
     
     static public let schema : String = "acronyms"
     
-    public init(id: UUID? = nil, long: String, short: String) {
+    public init(id: UUID? = nil, userID: User.IDValue, long: String, short: String) {
         self.id = id
         self.long = long
         self.short = short
+        self.$userID.id = userID
     }
 }
 
