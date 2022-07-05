@@ -24,6 +24,13 @@ final class Acronym : Model {
     @Field(key: "short")
     public var short : String
     
+    @Siblings(
+        through: AcronymCategoryPivot.self,
+        from: \.$acronym,
+        to: \.$category
+    )
+    public var categories : [Category]
+    
     static public let schema : String = "acronyms"
     
     public init(id: UUID? = nil, userID: User.IDValue, long: String, short: String) {
